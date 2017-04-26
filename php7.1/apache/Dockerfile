@@ -30,11 +30,11 @@ RUN a2enmod rewrite expires
 VOLUME /var/www/html
 
 ENV WORDPRESS_VERSION 4.7.4
-ENV WORDPRESS_MD5 b378f3711dfd73cd5b1b140f3d7da507
+ENV WORDPRESS_SHA1 08bea92708dc335216b4c7074241d920d540ead3
 
 RUN set -ex; \
-	curl -o wordpress.tar.gz -fSL "https://ja.wordpress.org/wordpress-${WORDPRESS_VERSION}-ja.tar.gz"; \
-	echo "$WORDPRESS_MD5 *wordpress.tar.gz" | md5sum -c -; \
+	curl -o wordpress.tar.gz -fSL "https://downloads.wordpress.org/release/ja/wordpress-${WORDPRESS_VERSION}.tar.gz"; \
+	echo "$WORDPRESS_SHA1 *wordpress.tar.gz" | sha1sum -c -; \
 # upstream tarballs include ./wordpress/ so this gives us /usr/src/wordpress
 	tar -xzf wordpress.tar.gz -C /usr/src/; \
 	rm wordpress.tar.gz; \
